@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { EChoicesBoilerplate } from 'enums/choices-boilerplate.enum';
 import { EErrors } from 'enums/errors.enum';
+import { EGitName } from 'enums/git-name.enum';
 
 export const questions = [
   {
@@ -12,7 +13,7 @@ export const questions = [
   },
   {
     type: 'input',
-    name: 'techName',
+    name: 'folderName',
     message: 'Qual o nome do projeto?',
     validate(folderName: string) {
       if (!folderName) return EErrors.FolderName;
@@ -20,8 +21,8 @@ export const questions = [
         return EErrors.SpecialCharacters;
       if (
         folderName === 'node_modules' ||
-        folderName === 'boilerplate-typescript-nodejs' ||
-        folderName === 'boilerplate-scss '
+        folderName === EGitName.NodejsTypescript ||
+        folderName === EGitName.Scss
       )
         return EErrors.FolderNameReserved;
 
